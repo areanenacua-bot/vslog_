@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6D1926">
+    <title>{% block title %}School Visitor Log System{% endblock %}</title>
+    <link href="{% static 'visitors/vendor/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'visitors/vendor/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'visitors/app.css' %}" rel="stylesheet">
+</head>
+<body>
+{% if user.is_authenticated %}
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="app-shell">
+    <aside id="sidebar" class="app-sidebar">
+        <a class="brand" href="{% url 'dashboard' %}"><img class="brand-logo" src="{% static 'visitors/msu.png' %}" alt="MSU Sultan Naga Dimaporo seal"><span>VSLog<span class="brand-caption">MSU · SULTAN NAGA DIMAPORO</span></span></a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="sidebar-navigation"><i class="bi bi-list" aria-hidden="true"></i><span>Menu</span></button>
+        <div id="sidebar-navigation" class="sidebar-navigation">
+            <div class="sidebar-menu">
+            <p class="nav-caption">WORKSPACE</p>
+            <nav aria-label="Main navigation" class="sidebar-links">
+                <a href="{% url 'dashboard' %}" {% if request.resolver_match.url_name == 'dashboard' or request.resolver_match.url_name == 'home' %}aria-current="page"{% endif %}><i class="bi bi-grid" aria-hidden="true"></i>Dashboard</a>
+                <a href="{% url 'register_visitor' %}" {% if request.resolver_match.url_name == 'register_visitor' %}aria-current="page"{% endif %}><i class="bi bi-person-plus" aria-hidden="true"></i>Register Visitor</a>
+                <a href="{% url 'active_visitors' %}" {% if request.resolver_match.url_name == 'active_visitors' %}aria-current="page"{% endif %}><i class="bi bi-people" aria-hidden="true"></i>Active Visitors</a>
+                <a href="{% url 'visitor_history' %}" {% if request.resolver_match.url_name == 'visitor_history' %}aria-current="page"{% endif %}><i class="bi bi-clock-history" aria-hidden="true"></i>Visitor History</a>
+                <a href="{% url 'reports' %}" {% if request.resolver_match.url_name == 'reports' %}aria-current="page"{% endif %}><i class="bi bi-bar-chart" aria-hidden="true"></i>Reports</a>
+            </nav>
+            </div>
+            <div class="sidebar-bottom">
+                <div class="sidebar-profile"><span class="account-avatar" aria-hidden="true">{{ user.first_name|default:user.username|first|upper }}</span><strong>{{ user.get_full_name|default:user.username }}</strong><small>{% if user.is_staff %}Administrator{% else %}Visitor desk personnel{% endif %}</small></div>
+                <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="logout-button" type="submit"><i class="bi bi-box-arrow-left" aria-hidden="true"></i>Sign out</button></form>
+            </div>
+        </div>
+    </aside>
+    <div class="app-workspace">
+        <header class="topbar">
+            <span class="workspace-label"><span class="status-dot"></span>School visitor desk</span>
+            <form method="get" action="{% url 'visitor_history' %}" class="global-search" role="search">
+                <i class="bi bi-search" aria-hidden="true"></i><label class="visually-hidden" for="global-search">Search visitor history</label><input id="global-search" name="q" placeholder="Search visitor history..." maxlength="200"><button type="submit" aria-label="Search visitor history"><i class="bi bi-arrow-return-left" aria-hidden="true"></i></button>
+            </form>
+            <div class="account"><span class="account-avatar" aria-hidden="true">{{ user.username|first|upper }}</span><div><strong>{{ user.get_full_name|default:user.username }}</strong><small>{% if user.is_staff %}Administrator{% else %}Authorized staff{% endif %}</small></div></div>
+        </header>
+        <main id="main-content" class="main-content" tabindex="-1">
+            <div class="page-heading"><div><p class="eyebrow">CAMPUS OPERATIONS</p><h1>{% block header_title %}Welcome{% endblock %}</h1></div><span class="page-date"><i class="bi bi-calendar3" aria-hidden="true"></i>{% now 'D, M j, Y' %}<small>Philippine time</small></span></div>
+            {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% elif message.tags == 'success' %}success{% else %}info{% endif %} alert-dismissible fade show" role="alert">{{ message }}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>
+            {% endfor %}
+            {% block content %}{% endblock %}
+            <footer class="page-footer"><span>VSLog &middot; School Visitor Management</span><span>Organized visits. A connected campus.</span></footer>
+        </main>
+    </div>
+</div>
+{% else %}{% block unauth_content %}{% endblock %}{% endif %}
+<script src="{% static 'visitors/vendor/bootstrap.bundle.min.js' %}"></script>
+<script>
+    const menuButton = document.querySelector('.mobile-menu');
+    if (menuButton) menuButton.addEventListener('click', () => {
+        const expanded = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(expanded));
+        document.querySelector('#sidebar-navigation').classList.toggle('is-open', expanded);
+    });
+</script>
+</body>
+</html>

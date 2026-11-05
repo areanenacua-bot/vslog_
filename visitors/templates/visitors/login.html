@@ -1,0 +1,24 @@
+{% extends 'visitors/base.html' %}
+{% load static %}
+{% block title %}Sign in - VSLog{% endblock %}
+{% block unauth_content %}
+<div class="login-layout">
+    <section class="login-story">
+        <div class="brand"><img class="brand-logo" src="{% static 'visitors/msu.png' %}" alt="MSU Sultan Naga Dimaporo seal"><span>VSLog<span class="brand-caption">MSU · SULTAN NAGA DIMAPORO</span></span></div>
+        <h1>Every visit.<br>A warm welcome.<br>A safer campus.</h1>
+        <p>A simpler way to welcome visitors, organize their visits, and know who's inside your school.</p>
+        <div class="login-note"><i class="bi bi-shield-check me-2" aria-hidden="true"></i>Built for your school's everyday visitor desk.</div>
+    </section>
+    <section class="login-form-area"><div class="login-form">
+        <p class="eyebrow">AUTHORIZED PERSONNEL</p><h2>Visitor desk sign in</h2><p class="text-muted mb-4">Welcome back. Sign in with your assigned account to manage campus arrivals and departures.</p>
+        {% for message in messages %}<div class="alert alert-danger" role="alert">{{ message }}</div>{% endfor %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3"><label for="username" class="form-label">Username</label><input class="form-control" id="username" name="username" autocomplete="username" placeholder="Enter your username" required autofocus></div>
+            <div class="mb-4"><label for="password" class="form-label">Password</label><input type="password" class="form-control" id="password" name="password" autocomplete="current-password" placeholder="Enter your password" required></div>
+            <button type="submit" class="btn btn-primary">Sign in to visitor desk <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i></button>
+        </form>
+        <p class="login-footnote"><i class="bi bi-lock me-1" aria-hidden="true"></i>For authorized school personnel.<br>Need an account or password assistance? Contact your school administrator.</p>
+    </div></section>
+</div>
+{% endblock %}

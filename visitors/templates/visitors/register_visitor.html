@@ -1,0 +1,66 @@
+{% extends 'visitors/base.html' %}
+{% block title %}Register Visitor - VSLog{% endblock %}
+{% block header_title %}Register Visitor{% endblock %}
+{% block content %}
+<p class="text-muted">Locate a returning visitor or enter a new profile, then record their arrival.</p>
+<div class="card border-0 shadow-sm mb-4"><div class="card-body">
+    <h2 class="h5">Returning visitor</h2>
+    <form method="get" class="d-flex gap-2">
+        <label class="visually-hidden" for="lookup">Visitor name or contact number</label>
+        <input id="lookup" class="form-control" name="q" value="{{ query }}" placeholder="Search by full name or contact number" required maxlength="200">
+        <button class="btn btn-outline-primary">Find visitor</button>
+    </form>
+    {% if query %}
+    <ul class="list-group list-group-flush mt-3">
+        {% for visitor in matches %}
+        <li class="list-group-item d-flex flex-wrap justify-content-between gap-2">
+            <span>{{ visitor.first_name }} {{ visitor.last_name }} <small class="text-muted">{{ visitor.contact_number }} / {{ visitor.visitor_type_display }}</small></span>
+            <a href="{% url 'register_visitor' %}?visitor={{ visitor.pk }}" class="btn btn-sm btn-outline-primary">Use profile</a>
+        </li>
+        {% empty %}<li class="list-group-item text-muted">No matching profiles. Enter a new visitor below.</li>{% endfor %}
+    </ul>
+    <p class="small text-muted mt-2 mb-0">Up to 20 matches are shown. Refine your search if needed.</p>
+    {% endif %}
+</div></div>
+{% if not has_offices %}<div class="alert alert-warning">An administrator must add a school office before you can record a visit.</div>{% endif %}
+<div class="card border-0 shadow-sm"><div class="card-body p-4">
+    <div class="d-flex justify-content-between mb-3"><h2 class="h5">Visitor and visit details</h2><a href="{% url 'register_visitor' %}">Start new profile</a></div>
+    {% if selected or form.visitor.value %}<p class="alert alert-info">Using an existing visitor profile. Review their details before recording a new visit.</p>{% endif %}
+    <form method="post">
+        {% csrf_token %}{{ form.visitor }}{{ form.visitor.errors }}
+        {% for error in form.non_field_errors %}<div class="alert alert-danger" role="alert">{{ error }}</div>{% endfor %}
+        <div class="row g-3">
+            {% for field in form.visible_fields %}
+            <div {% if field.name == 'visitor_type_other' %}id="other-visitor-type-field"{% endif %} class="{% if field.name == 'address' or field.name == 'purpose' %}col-12{% else %}col-md-6{% endif %}">
+                <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} <span class="text-danger" aria-label="required">*</span>{% elif field.name == 'visitor_type_other' %} <span class="text-muted small">(required for Other)</span>{% else %} <span class="text-muted small">(optional)</span>{% endif %}</label>
+                {{ field }}
+                {% for error in field.errors %}<div class="text-danger small" role="alert">{{ error }}</div>{% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mt-4">
+            <small class="text-muted">Arrival time and the recording staff member are saved automatically.</small>
+            <button class="btn btn-primary" {% if not has_offices %}disabled{% endif %}>Record time-in</button>
+        </div>
+    </form>
+</div></div>
+<script>
+(() => {
+    const type = document.getElementById('id_visitor_type');
+    const wrapper = document.getElementById('other-visitor-type-field');
+    const input = document.getElementById('id_visitor_type_other');
+    function updateOtherField() {
+        const isOther = type.value === 'Other';
+        wrapper.hidden = !isOther;
+        input.disabled = !isOther;
+        input.required = isOther;
+    }
+    type.addEventListener('change', () => {
+        updateOtherField();
+        if (type.value === 'Other') input.focus();
+    });
+    window.addEventListener('pageshow', updateOtherField);
+    updateOtherField();
+})();
+</script>
+{% endblock %}

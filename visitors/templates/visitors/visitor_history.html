@@ -1,0 +1,27 @@
+{% extends 'visitors/base.html' %}
+{% block title %}Visitor History - VSLog{% endblock %}
+{% block header_title %}Visitor History{% endblock %}
+{% block content %}
+<p class="text-muted">Review recorded arrivals and departures. Date filters use the arrival date in Philippine time.</p>
+{% include 'visitors/filters.html' %}
+<div class="card shadow-sm border-0"><div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+        <thead><tr><th>Visitor</th><th>Type</th><th>Destination / person</th><th>Purpose</th><th>Time in</th><th>Time out</th><th>Status</th><th>Recorded by</th></tr></thead>
+        <tbody>
+        {% for visit in visits %}
+        <tr>
+            <td>{{ visit.visitor.first_name }} {{ visit.visitor.last_name }}<small class="d-block text-muted">{{ visit.visitor.contact_number }}</small></td>
+            <td>{{ visit.visitor.visitor_type_display }}</td>
+            <td>{{ visit.office.office_name }}<small class="d-block text-muted">{{ visit.person_to_visit|default:'-' }}</small></td>
+            <td>{{ visit.purpose }}</td>
+            <td class="text-nowrap">{{ visit.time_in|date:'M d, Y h:i A' }}</td>
+            <td class="text-nowrap">{{ visit.time_out|date:'M d, Y h:i A'|default:'-' }}</td>
+            <td><span class="badge {% if visit.status == 'Inside' %}bg-success{% else %}bg-secondary{% endif %}">{{ visit.status }}</span></td>
+            <td>{% firstof visit.recorded_by.get_full_name visit.recorded_by.username 'Unavailable' %}</td>
+        </tr>
+        {% empty %}<tr><td colspan="8" class="text-center text-muted py-4">No matching visit records.</td></tr>{% endfor %}
+        </tbody>
+    </table>
+</div></div>
+{% include 'visitors/pagination.html' %}
+{% endblock %}

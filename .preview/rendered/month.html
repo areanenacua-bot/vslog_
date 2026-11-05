@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6D1926">
+    <title>Dashboard - VSLog</title>
+    <link href="file:///D:/Thesis/VSLog/visitors/static/visitors/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="file:///D:/Thesis/VSLog/visitors/static/visitors/vendor/bootstrap-icons.css" rel="stylesheet">
+    <link href="file:///D:/Thesis/VSLog/visitors/static/visitors/app.css" rel="stylesheet">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="app-shell">
+    <aside id="sidebar" class="app-sidebar">
+        <a class="brand" href="/dashboard/"><img class="brand-logo" src="file:///D:/Thesis/VSLog/visitors/static/visitors/msu.png" alt="MSU Sultan Naga Dimaporo seal"><span>VSLog<span class="brand-caption">MSU · SULTAN NAGA DIMAPORO</span></span></a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="sidebar-navigation"><i class="bi bi-list" aria-hidden="true"></i><span>Menu</span></button>
+        <div id="sidebar-navigation" class="sidebar-navigation">
+            <div class="sidebar-menu">
+            <p class="nav-caption">WORKSPACE</p>
+            <nav aria-label="Main navigation" class="sidebar-links">
+                <a href="/dashboard/" aria-current="page"><i class="bi bi-grid" aria-hidden="true"></i>Dashboard</a>
+                <a href="/register-visitor/" ><i class="bi bi-person-plus" aria-hidden="true"></i>Register Visitor</a>
+                <a href="/active-visitors/" ><i class="bi bi-people" aria-hidden="true"></i>Active Visitors</a>
+                <a href="/visitor-history/" ><i class="bi bi-clock-history" aria-hidden="true"></i>Visitor History</a>
+                <a href="/reports/" ><i class="bi bi-bar-chart" aria-hidden="true"></i>Reports</a>
+            </nav>
+            </div>
+            <div class="sidebar-bottom">
+                <div class="sidebar-profile"><span class="account-avatar" aria-hidden="true">A</span><strong>Alex Santos</strong><small>Administrator</small></div>
+                <form method="post" action="/logout/"><input type="hidden" name="csrfmiddlewaretoken" value="BszwGiFKVcoCXtdqyqEdP3W67w1CugPtzv9WbZqcAKFGGDOiVpvnJPmfZtGgwJr5"><button class="logout-button" type="submit"><i class="bi bi-box-arrow-left" aria-hidden="true"></i>Sign out</button></form>
+            </div>
+        </div>
+    </aside>
+    <div class="app-workspace">
+        <header class="topbar">
+            <span class="workspace-label"><span class="status-dot"></span>School visitor desk</span>
+            <form method="get" action="/visitor-history/" class="global-search" role="search">
+                <i class="bi bi-search" aria-hidden="true"></i><label class="visually-hidden" for="global-search">Search visitor history</label><input id="global-search" name="q" placeholder="Search visitor history..." maxlength="200"><button type="submit" aria-label="Search visitor history"><i class="bi bi-arrow-return-left" aria-hidden="true"></i></button>
+            </form>
+            <div class="account"><span class="account-avatar" aria-hidden="true">C</span><div><strong>Alex Santos</strong><small>Administrator</small></div></div>
+        </header>
+        <main id="main-content" class="main-content" tabindex="-1">
+            <div class="page-heading"><div><p class="eyebrow">CAMPUS OPERATIONS</p><h1>Dashboard</h1></div><span class="page-date"><i class="bi bi-calendar3" aria-hidden="true"></i>Thu, Nov 5, 2026<small>Philippine time</small></span></div>
+            
+            
+<div class="dashboard-greeting"><p>Welcome back, <strong>Alex</strong>. Here's your campus today.</p><span><span class="status-dot"></span> Visitor desk overview</span></div>
+<div class="dashboard-board"><div class="dashboard-primary">
+<div class="overview-heading"><h2>At a glance</h2><a href="/active-visitors/" class="text-link">Record time-out <i class="bi bi-arrow-up-right ms-1" aria-hidden="true"></i></a></div>
+<div class="stats-grid">
+    <article class="stat-card"><div class="stat-top"><span class="stat-label">Visitors today</span><span class="stat-icon"><i class="bi bi-people" aria-hidden="true"></i></span></div><div class="stat-value">2</div><span class="stat-caption">Arrivals since midnight</span><span class="stat-line" aria-hidden="true"></span></article>
+    <article class="stat-card"><div class="stat-top"><span class="stat-label">Currently inside</span><span class="stat-icon blue"><i class="bi bi-door-open" aria-hidden="true"></i></span></div><div class="stat-value">2</div><span class="stat-caption">All visits awaiting departure</span><span class="stat-line" aria-hidden="true"></span></article>
+    <article class="stat-card"><div class="stat-top"><span class="stat-label">Completed today</span><span class="stat-icon amber"><i class="bi bi-check2-circle" aria-hidden="true"></i></span></div><div class="stat-value">1</div><span class="stat-caption">Departures recorded today</span><span class="stat-line" aria-hidden="true"></span></article>
+    <article class="stat-card"><div class="stat-top"><span class="stat-label">Visitors this month</span><span class="stat-icon lilac"><i class="bi bi-calendar2-week" aria-hidden="true"></i></span></div><div class="stat-value">3</div><span class="stat-caption">November 2026 arrivals</span><span class="stat-line" aria-hidden="true"></span></article>
+</div>
+<div class="charts-grid">
+    <section class="card">
+        <div class="panel-heading"><div><h2>Visitor activity</h2><p>Daily arrivals over the last 30 days</p></div><nav class="period-toggle" aria-label="Visitor activity period"><a href="?period=week" >7 days</a><a href="?period=month" aria-current="true">30 days</a></nav></div>
+        <div class="trend-summary"><strong>3</strong><span>visits in this period</span></div>
+        <div class="trend-chart month" role="img" aria-label="Daily arrival chart. 3 visits in the last 30 days. Daily values are available in the table below.">
+            <div class="trend-column" title="Oct 7: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 8: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 9: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 10: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 11: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 12: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 13: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 14: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 15: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 16: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 17: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 18: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 19: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 20: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 21: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 22: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 23: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 24: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 25: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 26: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 27: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 28: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 29: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 30: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Oct 31: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Nov 1: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Nov 2: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Nov 3: 1 visits"><span class="trend-count">1</span><div class="trend-fill" style="height: 40%"></div></div><div class="trend-column" title="Nov 4: 0 visits"><span class="trend-count">0</span><div class="trend-fill" style="height: 0%"></div></div><div class="trend-column" title="Nov 5: 2 visits"><span class="trend-count">2</span><div class="trend-fill" style="height: 80%"></div></div>
+        </div>
+        <div class="trend-labels month" aria-hidden="true"><span>7</span><span></span><span></span><span></span><span>11</span><span></span><span></span><span></span><span></span><span>16</span><span></span><span></span><span></span><span></span><span>21</span><span></span><span></span><span></span><span></span><span>26</span><span></span><span></span><span></span><span></span><span>31</span><span></span><span></span><span></span><span></span><span>5</span></div>
+        <table class="visually-hidden"><caption>Daily visitor arrivals</caption><thead><tr><th scope="col">Date</th><th scope="col">Visits</th></tr></thead><tbody><tr><th scope="row">October 7, 2026</th><td>0</td></tr><tr><th scope="row">October 8, 2026</th><td>0</td></tr><tr><th scope="row">October 9, 2026</th><td>0</td></tr><tr><th scope="row">October 10, 2026</th><td>0</td></tr><tr><th scope="row">October 11, 2026</th><td>0</td></tr><tr><th scope="row">October 12, 2026</th><td>0</td></tr><tr><th scope="row">October 13, 2026</th><td>0</td></tr><tr><th scope="row">October 14, 2026</th><td>0</td></tr><tr><th scope="row">October 15, 2026</th><td>0</td></tr><tr><th scope="row">October 16, 2026</th><td>0</td></tr><tr><th scope="row">October 17, 2026</th><td>0</td></tr><tr><th scope="row">October 18, 2026</th><td>0</td></tr><tr><th scope="row">October 19, 2026</th><td>0</td></tr><tr><th scope="row">October 20, 2026</th><td>0</td></tr><tr><th scope="row">October 21, 2026</th><td>0</td></tr><tr><th scope="row">October 22, 2026</th><td>0</td></tr><tr><th scope="row">October 23, 2026</th><td>0</td></tr><tr><th scope="row">October 24, 2026</th><td>0</td></tr><tr><th scope="row">October 25, 2026</th><td>0</td></tr><tr><th scope="row">October 26, 2026</th><td>0</td></tr><tr><th scope="row">October 27, 2026</th><td>0</td></tr><tr><th scope="row">October 28, 2026</th><td>0</td></tr><tr><th scope="row">October 29, 2026</th><td>0</td></tr><tr><th scope="row">October 30, 2026</th><td>0</td></tr><tr><th scope="row">October 31, 2026</th><td>0</td></tr><tr><th scope="row">November 1, 2026</th><td>0</td></tr><tr><th scope="row">November 2, 2026</th><td>0</td></tr><tr><th scope="row">November 3, 2026</th><td>1</td></tr><tr><th scope="row">November 4, 2026</th><td>0</td></tr><tr><th scope="row">November 5, 2026</th><td>2</td></tr></tbody></table>
+    </section>
+    <section class="card">
+        <div class="panel-heading"><div><h2>Who visits our campus</h2><p>Visitor types &middot; All recorded visits</p></div><i class="bi bi-pie-chart text-muted" aria-hidden="true"></i></div>
+        <div class="distribution">
+            <div class="donut" style="background: conic-gradient(#6D1926 0.0000% 66.6667%, #A65066 66.6667% 100.0000%)" role="img" aria-label="Visitor type distribution. 3 total visits. Counts are listed alongside this chart."><div class="donut-center"><strong>3</strong><span>Total visits</span></div></div>
+            <ul class="type-legend"><li><span class="legend-dot" style="background: #6D1926" aria-hidden="true"></span><span class="legend-name">Parent/Guardian</span><strong>2</strong></li><li><span class="legend-dot" style="background: #A65066" aria-hidden="true"></span><span class="legend-name">Delivery Personnel</span><strong>1</strong></li></ul>
+        </div>
+    </section>
+</div>
+<div class="lower-grid">
+    <section class="card">
+        <div class="panel-heading"><div><h2>Recent visits</h2><p>The latest activity at your school entrance</p></div><a href="/visitor-history/" class="text-link">View history <i class="bi bi-arrow-up-right ms-1" aria-hidden="true"></i></a></div>
+        <div class="table-responsive recent-table"><table class="table align-middle mb-0"><thead><tr><th scope="col">Visitor</th><th scope="col">Destination</th><th scope="col">Time in</th><th scope="col">Time out</th><th scope="col">Status</th></tr></thead><tbody>
+            
+            <tr><td><div class="visitor-cell"><span class="visitor-initial" aria-hidden="true">CM</span><div><strong>COCO MARTIN</strong><small>Delivery Personnel</small></div></div></td><td>Guidance Office</td><td class="time-cell">11:21 PM<small>Nov 5, 2026</small></td><td class="time-cell"><span class="text-muted">&mdash;</span></td><td><span class="badge bg-success"><span class="status-dot me-1" aria-hidden="true"></span>Inside</span></td></tr>
+            
+            <tr><td><div class="visitor-cell"><span class="visitor-initial" aria-hidden="true">KC</span><div><strong>Kaye CC</strong><small>Parent/Guardian</small></div></div></td><td>Registrar Office</td><td class="time-cell">11:18 PM<small>Nov 5, 2026</small></td><td class="time-cell">11:22 PM<small>Nov 5, 2026</small></td><td><span class="badge bg-secondary">Completed</span></td></tr>
+            
+            <tr><td><div class="visitor-cell"><span class="visitor-initial" aria-hidden="true">MS</span><div><strong>Maria Santos</strong><small>Parent/Guardian</small></div></div></td><td>Registrar Office</td><td class="time-cell">09:06 AM<small>Nov 3, 2026</small></td><td class="time-cell"><span class="text-muted">&mdash;</span></td><td><span class="badge bg-success"><span class="status-dot me-1" aria-hidden="true"></span>Inside</span></td></tr>
+            
+        </tbody></table></div>
+    </section>
+</div></div>
+<aside class="dashboard-rail" aria-label="Visitor desk shortcuts">
+    <section class="desk-action-card"><span class="desk-action-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span><p class="eyebrow">VISITOR DESK</p><h2>A warm welcome.<br>A recorded arrival.</h2><p>Register a new visitor or find a returning profile to start their visit.</p><a href="/register-visitor/" class="btn">Register visitor <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i></a></section>
+    <section class="card desk-shortcuts"><div class="panel-heading"><div><h2>Quick actions</h2><p>Your daily visitor workflow</p></div></div><a href="/active-visitors/"><i class="bi bi-box-arrow-right" aria-hidden="true"></i><span>Record time-out<small>Complete an active visit</small></span><i class="bi bi-chevron-right" aria-hidden="true"></i></a><a href="/visitor-history/"><i class="bi bi-search" aria-hidden="true"></i><span>Find a visit<small>Search the visitor log</small></span><i class="bi bi-chevron-right" aria-hidden="true"></i></a><a href="/reports/"><i class="bi bi-bar-chart" aria-hidden="true"></i><span>View reports<small>Explore campus activity</small></span><i class="bi bi-chevron-right" aria-hidden="true"></i></a></section>
+    <section class="card">
+        <div class="panel-heading"><div><h2>Top destinations</h2><p>Most visited school offices</p></div><i class="bi bi-buildings text-muted" aria-hidden="true"></i></div>
+        <ol class="office-list"><li><span class="office-rank">01</span><div class="office-info"><div><span>Registrar Office</span><strong>2</strong></div><div class="office-track" aria-hidden="true"><div style="width: 100%"></div></div></div></li><li><span class="office-rank">02</span><div class="office-info"><div><span>Guidance Office</span><strong>1</strong></div><div class="office-track" aria-hidden="true"><div style="width: 50%"></div></div></div></li></ol>
+        <p class="office-footnote">Top 2 &middot; All recorded visits</p>
+    </section>
+
+</aside></div>
+
+            <footer class="page-footer"><span>VSLog &middot; School Visitor Management</span><span>Organized visits. A connected campus.</span></footer>
+        </main>
+    </div>
+</div>
+
+<script src="file:///D:/Thesis/VSLog/visitors/static/visitors/vendor/bootstrap.bundle.min.js"></script>
+<script>
+    const menuButton = document.querySelector('.mobile-menu');
+    if (menuButton) menuButton.addEventListener('click', () => {
+        const expanded = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(expanded));
+        document.querySelector('#sidebar-navigation').classList.toggle('is-open', expanded);
+    });
+</script>
+</body>
+</html>

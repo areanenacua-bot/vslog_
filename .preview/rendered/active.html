@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6D1926">
+    <title>Active Visitors - School Visitor Log System</title>
+    <link href="file:///D:/Thesis/VSLog/visitors/static/visitors/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="file:///D:/Thesis/VSLog/visitors/static/visitors/vendor/bootstrap-icons.css" rel="stylesheet">
+    <link href="file:///D:/Thesis/VSLog/visitors/static/visitors/app.css" rel="stylesheet">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="app-shell">
+    <aside id="sidebar" class="app-sidebar">
+        <a class="brand" href="/dashboard/"><img class="brand-logo" src="file:///D:/Thesis/VSLog/visitors/static/visitors/msu.png" alt="MSU Sultan Naga Dimaporo seal"><span>VSLog<span class="brand-caption">MSU · SULTAN NAGA DIMAPORO</span></span></a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="sidebar-navigation"><i class="bi bi-list" aria-hidden="true"></i><span>Menu</span></button>
+        <div id="sidebar-navigation" class="sidebar-navigation">
+            <div class="sidebar-menu">
+            <p class="nav-caption">WORKSPACE</p>
+            <nav aria-label="Main navigation" class="sidebar-links">
+                <a href="/dashboard/" ><i class="bi bi-grid" aria-hidden="true"></i>Dashboard</a>
+                <a href="/register-visitor/" ><i class="bi bi-person-plus" aria-hidden="true"></i>Register Visitor</a>
+                <a href="/active-visitors/" aria-current="page"><i class="bi bi-people" aria-hidden="true"></i>Active Visitors</a>
+                <a href="/visitor-history/" ><i class="bi bi-clock-history" aria-hidden="true"></i>Visitor History</a>
+                <a href="/reports/" ><i class="bi bi-bar-chart" aria-hidden="true"></i>Reports</a>
+            </nav>
+            </div>
+            <div class="sidebar-bottom">
+                <div class="sidebar-profile"><span class="account-avatar" aria-hidden="true">A</span><strong>Alex Santos</strong><small>Administrator</small></div>
+                <form method="post" action="/logout/"><input type="hidden" name="csrfmiddlewaretoken" value="FteGiZQUXa5ac9PJWf1AwEeBsD6hGm3FV2LWevFTuJkWZihEaAQDFQkPGeCVyP5l"><button class="logout-button" type="submit"><i class="bi bi-box-arrow-left" aria-hidden="true"></i>Sign out</button></form>
+            </div>
+        </div>
+    </aside>
+    <div class="app-workspace">
+        <header class="topbar">
+            <span class="workspace-label"><span class="status-dot"></span>School visitor desk</span>
+            <form method="get" action="/visitor-history/" class="global-search" role="search">
+                <i class="bi bi-search" aria-hidden="true"></i><label class="visually-hidden" for="global-search">Search visitor history</label><input id="global-search" name="q" placeholder="Search visitor history..." maxlength="200"><button type="submit" aria-label="Search visitor history"><i class="bi bi-arrow-return-left" aria-hidden="true"></i></button>
+            </form>
+            <div class="account"><span class="account-avatar" aria-hidden="true">C</span><div><strong>Alex Santos</strong><small>Administrator</small></div></div>
+        </header>
+        <main id="main-content" class="main-content" tabindex="-1">
+            <div class="page-heading"><div><p class="eyebrow">CAMPUS OPERATIONS</p><h1>Active Visitors</h1></div><span class="page-date"><i class="bi bi-calendar3" aria-hidden="true"></i>Thu, Nov 5, 2026<small>Philippine time</small></span></div>
+            
+            
+<p class="text-muted">Visitors currently inside the school. Record time-out when they leave.</p>
+<div class="card shadow-sm border-0 mb-4"><div class="card-body">
+    <form method="get" class="row g-3 align-items-end">
+        
+        
+        <div class="col-md-6">
+            <label class="form-label" for="id_q">Search</label>
+            <input type="text" name="q" placeholder="Name, contact, purpose or person" maxlength="200" class="form-control" id="id_q">
+            
+        </div>
+        
+        <div class="col-sm-6 col-lg-3">
+            <label class="form-label" for="id_status">Status</label>
+            <select name="status" class="form-select" id="id_status">
+  <option value="" selected>All statuses</option>
+
+  <option value="Inside">Inside</option>
+
+  <option value="Completed">Completed</option>
+
+</select>
+            
+        </div>
+        
+        <div class="col-sm-6 col-lg-3">
+            <label class="form-label" for="id_visitor_type">Visitor type</label>
+            <select name="visitor_type" class="form-select" id="id_visitor_type">
+  <option value="" selected>All visitor types</option>
+
+  <option value="Parent/Guardian">Parent/Guardian</option>
+
+  <option value="Alumni">Alumni</option>
+
+  <option value="Delivery Personnel">Delivery Personnel</option>
+
+  <option value="Contractor">Contractor</option>
+
+  <option value="Government Personnel">Government Personnel</option>
+
+  <option value="Guest">Guest</option>
+
+  <option value="Other">Other</option>
+
+</select>
+            
+        </div>
+        
+        <div class="col-sm-6 col-lg-3">
+            <label class="form-label" for="id_office">Office</label>
+            <select name="office" class="form-select" id="id_office">
+  <option value="" selected>All destinations</option>
+
+  <option value="3">Cashier</option>
+
+  <option value="2">Dean&#x27;s Office</option>
+
+  <option value="4">Guidance Office</option>
+
+  <option value="1">Registrar Office</option>
+
+</select>
+            
+        </div>
+        
+        <div class="col-sm-6 col-lg-3">
+            <label class="form-label" for="id_date_from">Arrival date from</label>
+            <input type="date" name="date_from" class="form-control" id="id_date_from">
+            
+        </div>
+        
+        <div class="col-sm-6 col-lg-3">
+            <label class="form-label" for="id_date_to">Arrival date to</label>
+            <input type="date" name="date_to" class="form-control" id="id_date_to">
+            
+        </div>
+        
+        <div class="col-12 d-flex gap-2"><button class="btn btn-primary">Apply filters</button><a href="/active-visitors/" class="btn btn-outline-secondary">Reset</a></div>
+    </form>
+</div></div>
+
+<div class="card shadow-sm border-0">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Visitor</th>
+                        <th>Type</th>
+                        <th>Destination</th>
+                        <th>Purpose</th>
+                        <th>Time In</th>
+                        <th>Recorded By</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>COCO MARTIN</td>
+                        <td>Delivery Personnel</td>
+                        <td>Guidance Office</td>
+                        <td>DELIVER PARCEL</td>
+                        <td>Nov 05, 2026 11:21 PM</td>
+                        <td>admin</td>
+                        <td>
+                            <form method="POST">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="FteGiZQUXa5ac9PJWf1AwEeBsD6hGm3FV2LWevFTuJkWZihEaAQDFQkPGeCVyP5l">
+                                <input type="hidden" name="visit_id" value="3">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Time Out</button>
+                            </form>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Maria Santos</td>
+                        <td>Parent/Guardian</td>
+                        <td>Registrar Office</td>
+                        <td>Enrollment inquiry</td>
+                        <td>Nov 03, 2026 09:06 AM</td>
+                        <td>admin</td>
+                        <td>
+                            <form method="POST">
+                                <input type="hidden" name="csrfmiddlewaretoken" value="FteGiZQUXa5ac9PJWf1AwEeBsD6hGm3FV2LWevFTuJkWZihEaAQDFQkPGeCVyP5l">
+                                <input type="hidden" name="visit_id" value="1">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Time Out</button>
+                            </form>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-3">
+    <p class="text-muted small mb-0">2 records / Page 1 of 1</p>
+    
+</div>
+
+
+            <footer class="page-footer"><span>VSLog &middot; School Visitor Management</span><span>Organized visits. A connected campus.</span></footer>
+        </main>
+    </div>
+</div>
+
+<script src="file:///D:/Thesis/VSLog/visitors/static/visitors/vendor/bootstrap.bundle.min.js"></script>
+<script>
+    const menuButton = document.querySelector('.mobile-menu');
+    if (menuButton) menuButton.addEventListener('click', () => {
+        const expanded = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(expanded));
+        document.querySelector('#sidebar-navigation').classList.toggle('is-open', expanded);
+    });
+</script>
+</body>
+</html>

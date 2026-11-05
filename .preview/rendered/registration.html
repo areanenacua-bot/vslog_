@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6D1926">
+    <title>Register Visitor - VSLog</title>
+    <link href="file:///D:/Thesis/VSLog/visitors/static/visitors/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="file:///D:/Thesis/VSLog/visitors/static/visitors/vendor/bootstrap-icons.css" rel="stylesheet">
+    <link href="file:///D:/Thesis/VSLog/visitors/static/visitors/app.css" rel="stylesheet">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="app-shell">
+    <aside id="sidebar" class="app-sidebar">
+        <a class="brand" href="/dashboard/"><img class="brand-logo" src="file:///D:/Thesis/VSLog/visitors/static/visitors/msu.png" alt="MSU Sultan Naga Dimaporo seal"><span>VSLog<span class="brand-caption">MSU · SULTAN NAGA DIMAPORO</span></span></a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="sidebar-navigation"><i class="bi bi-list" aria-hidden="true"></i><span>Menu</span></button>
+        <div id="sidebar-navigation" class="sidebar-navigation">
+            <div class="sidebar-menu">
+            <p class="nav-caption">WORKSPACE</p>
+            <nav aria-label="Main navigation" class="sidebar-links">
+                <a href="/dashboard/" ><i class="bi bi-grid" aria-hidden="true"></i>Dashboard</a>
+                <a href="/register-visitor/" aria-current="page"><i class="bi bi-person-plus" aria-hidden="true"></i>Register Visitor</a>
+                <a href="/active-visitors/" ><i class="bi bi-people" aria-hidden="true"></i>Active Visitors</a>
+                <a href="/visitor-history/" ><i class="bi bi-clock-history" aria-hidden="true"></i>Visitor History</a>
+                <a href="/reports/" ><i class="bi bi-bar-chart" aria-hidden="true"></i>Reports</a>
+            </nav>
+            </div>
+            <div class="sidebar-bottom">
+                <div class="sidebar-profile"><span class="account-avatar" aria-hidden="true">A</span><strong>Alex Santos</strong><small>Administrator</small></div>
+                <form method="post" action="/logout/"><input type="hidden" name="csrfmiddlewaretoken" value="SdwLUTFxhXinWcsRlo71Z88dhJey3RaQMMZ52XNDqXyMmzwWiUCdvqF6jP1WJ6wk"><button class="logout-button" type="submit"><i class="bi bi-box-arrow-left" aria-hidden="true"></i>Sign out</button></form>
+            </div>
+        </div>
+    </aside>
+    <div class="app-workspace">
+        <header class="topbar">
+            <span class="workspace-label"><span class="status-dot"></span>School visitor desk</span>
+            <form method="get" action="/visitor-history/" class="global-search" role="search">
+                <i class="bi bi-search" aria-hidden="true"></i><label class="visually-hidden" for="global-search">Search visitor history</label><input id="global-search" name="q" placeholder="Search visitor history..." maxlength="200"><button type="submit" aria-label="Search visitor history"><i class="bi bi-arrow-return-left" aria-hidden="true"></i></button>
+            </form>
+            <div class="account"><span class="account-avatar" aria-hidden="true">C</span><div><strong>Alex Santos</strong><small>Administrator</small></div></div>
+        </header>
+        <main id="main-content" class="main-content" tabindex="-1">
+            <div class="page-heading"><div><p class="eyebrow">CAMPUS OPERATIONS</p><h1>Register Visitor</h1></div><span class="page-date"><i class="bi bi-calendar3" aria-hidden="true"></i>Thu, Nov 5, 2026<small>Philippine time</small></span></div>
+            
+            
+<p class="text-muted">Locate a returning visitor or enter a new profile, then record their arrival.</p>
+<div class="card border-0 shadow-sm mb-4"><div class="card-body">
+    <h2 class="h5">Returning visitor</h2>
+    <form method="get" class="d-flex gap-2">
+        <label class="visually-hidden" for="lookup">Visitor name or contact number</label>
+        <input id="lookup" class="form-control" name="q" value="" placeholder="Search by full name or contact number" required maxlength="200">
+        <button class="btn btn-outline-primary">Find visitor</button>
+    </form>
+    
+</div></div>
+
+<div class="card border-0 shadow-sm"><div class="card-body p-4">
+    <div class="d-flex justify-content-between mb-3"><h2 class="h5">Visitor and visit details</h2><a href="/register-visitor/">Start new profile</a></div>
+    
+    <form method="post">
+        <input type="hidden" name="csrfmiddlewaretoken" value="SdwLUTFxhXinWcsRlo71Z88dhJey3RaQMMZ52XNDqXyMmzwWiUCdvqF6jP1WJ6wk"><input type="hidden" name="visitor" class="form-control" id="id_visitor">
+        
+        <div class="row g-3">
+            
+            <div  class="col-md-6">
+                <label class="form-label" for="id_first_name">First name <span class="text-danger" aria-label="required">*</span></label>
+                <input type="text" name="first_name" maxlength="100" class="form-control" required id="id_first_name">
+                
+            </div>
+            
+            <div  class="col-md-6">
+                <label class="form-label" for="id_last_name">Last name <span class="text-danger" aria-label="required">*</span></label>
+                <input type="text" name="last_name" maxlength="100" class="form-control" required id="id_last_name">
+                
+            </div>
+            
+            <div  class="col-md-6">
+                <label class="form-label" for="id_contact_number">Contact number <span class="text-danger" aria-label="required">*</span></label>
+                <input type="text" name="contact_number" maxlength="20" class="form-control" required id="id_contact_number">
+                
+            </div>
+            
+            <div  class="col-12">
+                <label class="form-label" for="id_address">Address <span class="text-danger" aria-label="required">*</span></label>
+                <textarea name="address" cols="40" rows="2" class="form-control" required id="id_address">
+</textarea>
+                
+            </div>
+            
+            <div  class="col-md-6">
+                <label class="form-label" for="id_visitor_type">Visitor type <span class="text-danger" aria-label="required">*</span></label>
+                <select name="visitor_type" class="form-select" required id="id_visitor_type">
+  <option value="" selected>Select visitor type</option>
+
+  <option value="Parent/Guardian">Parent/Guardian</option>
+
+  <option value="Alumni">Alumni</option>
+
+  <option value="Delivery Personnel">Delivery Personnel</option>
+
+  <option value="Contractor">Contractor</option>
+
+  <option value="Government Personnel">Government Personnel</option>
+
+  <option value="Guest">Guest</option>
+
+  <option value="Other">Other</option>
+
+</select>
+                
+            </div>
+            
+            <div id="other-visitor-type-field" class="col-md-6">
+                <label class="form-label" for="id_visitor_type_other">Specify visitor type <span class="text-muted small">(required for Other)</span></label>
+                <input type="text" name="visitor_type_other" placeholder="For example, Researcher" maxlength="100" class="form-control" id="id_visitor_type_other">
+                
+            </div>
+            
+            <div  class="col-12">
+                <label class="form-label" for="id_purpose">Purpose <span class="text-danger" aria-label="required">*</span></label>
+                <textarea name="purpose" cols="40" rows="2" class="form-control" required id="id_purpose">
+</textarea>
+                
+            </div>
+            
+            <div  class="col-md-6">
+                <label class="form-label" for="id_office">Office <span class="text-danger" aria-label="required">*</span></label>
+                <select name="office" class="form-select" required id="id_office">
+  <option value="" selected>Select destination</option>
+
+  <option value="3">Cashier</option>
+
+  <option value="2">Dean&#x27;s Office</option>
+
+  <option value="4">Guidance Office</option>
+
+  <option value="1">Registrar Office</option>
+
+</select>
+                
+            </div>
+            
+            <div  class="col-md-6">
+                <label class="form-label" for="id_person_to_visit">Person to visit <span class="text-muted small">(optional)</span></label>
+                <input type="text" name="person_to_visit" maxlength="150" class="form-control" id="id_person_to_visit">
+                
+            </div>
+            
+        </div>
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mt-4">
+            <small class="text-muted">Arrival time and the recording staff member are saved automatically.</small>
+            <button class="btn btn-primary" >Record time-in</button>
+        </div>
+    </form>
+</div></div>
+<script>
+(() => {
+    const type = document.getElementById('id_visitor_type');
+    const wrapper = document.getElementById('other-visitor-type-field');
+    const input = document.getElementById('id_visitor_type_other');
+    function updateOtherField() {
+        const isOther = type.value === 'Other';
+        wrapper.hidden = !isOther;
+        input.disabled = !isOther;
+        input.required = isOther;
+    }
+    type.addEventListener('change', () => {
+        updateOtherField();
+        if (type.value === 'Other') input.focus();
+    });
+    window.addEventListener('pageshow', updateOtherField);
+    updateOtherField();
+})();
+</script>
+
+            <footer class="page-footer"><span>VSLog &middot; School Visitor Management</span><span>Organized visits. A connected campus.</span></footer>
+        </main>
+    </div>
+</div>
+
+<script src="file:///D:/Thesis/VSLog/visitors/static/visitors/vendor/bootstrap.bundle.min.js"></script>
+<script>
+    const menuButton = document.querySelector('.mobile-menu');
+    if (menuButton) menuButton.addEventListener('click', () => {
+        const expanded = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(expanded));
+        document.querySelector('#sidebar-navigation').classList.toggle('is-open', expanded);
+    });
+</script>
+</body>
+</html>

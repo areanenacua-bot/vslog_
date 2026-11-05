@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6D1926">
+    <title>Sign in - VSLog</title>
+    <link href="file:///D:/Thesis/VSLog/visitors/static/visitors/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="file:///D:/Thesis/VSLog/visitors/static/visitors/vendor/bootstrap-icons.css" rel="stylesheet">
+    <link href="file:///D:/Thesis/VSLog/visitors/static/visitors/app.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="login-layout">
+    <section class="login-story">
+        <div class="brand"><img class="brand-logo" src="file:///D:/Thesis/VSLog/visitors/static/visitors/msu.png" alt="MSU Sultan Naga Dimaporo seal"><span>VSLog<span class="brand-caption">MSU · SULTAN NAGA DIMAPORO</span></span></div>
+        <h1>Every visit.<br>A warm welcome.<br>A safer campus.</h1>
+        <p>A simpler way to welcome visitors, organize their visits, and know who's inside your school.</p>
+        <div class="login-note"><i class="bi bi-shield-check me-2" aria-hidden="true"></i>Built for your school's everyday visitor desk.</div>
+    </section>
+    <section class="login-form-area"><div class="login-form">
+        <p class="eyebrow">AUTHORIZED PERSONNEL</p><h2>Visitor desk sign in</h2><p class="text-muted mb-4">Welcome back. Sign in with your assigned account to manage campus arrivals and departures.</p>
+        
+        <form method="post">
+            <input type="hidden" name="csrfmiddlewaretoken" value="67rc5FMI1C5ZYydNF9MmtPQukoIajJHQ7ED5OG71CO4m3SyodyJHJDz3tDZjt7A3">
+            <div class="mb-3"><label for="username" class="form-label">Username</label><input class="form-control" id="username" name="username" autocomplete="username" placeholder="Enter your username" required autofocus></div>
+            <div class="mb-4"><label for="password" class="form-label">Password</label><input type="password" class="form-control" id="password" name="password" autocomplete="current-password" placeholder="Enter your password" required></div>
+            <button type="submit" class="btn btn-primary">Sign in to visitor desk <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i></button>
+        </form>
+        <p class="login-footnote"><i class="bi bi-lock me-1" aria-hidden="true"></i>For authorized school personnel.<br>Need an account or password assistance? Contact your school administrator.</p>
+    </div></section>
+</div>
+
+<script src="file:///D:/Thesis/VSLog/visitors/static/visitors/vendor/bootstrap.bundle.min.js"></script>
+<script>
+    const menuButton = document.querySelector('.mobile-menu');
+    if (menuButton) menuButton.addEventListener('click', () => {
+        const expanded = menuButton.getAttribute('aria-expanded') !== 'true';
+        menuButton.setAttribute('aria-expanded', String(expanded));
+        document.querySelector('#sidebar-navigation').classList.toggle('is-open', expanded);
+    });
+</script>
+</body>
+</html>

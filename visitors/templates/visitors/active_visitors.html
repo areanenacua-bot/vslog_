@@ -1,0 +1,50 @@
+{% extends 'visitors/base.html' %}
+
+{% block title %}Active Visitors - School Visitor Log System{% endblock %}
+{% block header_title %}Active Visitors{% endblock %}
+
+{% block content %}
+<p class="text-muted">Visitors currently inside the school. Record time-out when they leave.</p>
+{% include 'visitors/filters.html' %}
+<div class="card shadow-sm border-0">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Visitor</th>
+                        <th>Type</th>
+                        <th>Destination</th>
+                        <th>Purpose</th>
+                        <th>Time In</th>
+                        <th>Recorded By</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for visit in active_visits %}
+                    <tr>
+                        <td>{{ visit.visitor.first_name }} {{ visit.visitor.last_name }}</td>
+                        <td>{{ visit.visitor.visitor_type_display }}</td>
+                        <td>{{ visit.office.office_name }}</td>
+                        <td>{{ visit.purpose }}</td>
+                        <td>{{ visit.time_in|date:'M d, Y h:i A' }}</td>
+                        <td>{% firstof visit.recorded_by.get_full_name visit.recorded_by.username 'Unavailable' %}</td>
+                        <td>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="visit_id" value="{{ visit.visit_id }}">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Time Out</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="7" class="text-center text-muted py-4">No visitors are currently inside the school.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% include 'visitors/pagination.html' %}
+{% endblock %}

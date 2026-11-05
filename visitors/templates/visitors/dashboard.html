@@ -1,0 +1,53 @@
+{% extends 'visitors/base.html' %}
+{% load static %}
+{% block title %}Dashboard - VSLog{% endblock %}
+{% block header_title %}Dashboard{% endblock %}
+{% block content %}
+<div class="dashboard-greeting"><p>Welcome back, <strong>{{ user.first_name|default:user.username }}</strong>. Here's your campus today.</p><span><span class="status-dot"></span> Visitor desk overview</span></div>
+<div class="dashboard-board"><div class="dashboard-primary">
+<div class="overview-heading"><h2>At a glance</h2><a href="{% url 'active_visitors' %}" class="text-link">Record time-out <i class="bi bi-arrow-up-right ms-1" aria-hidden="true"></i></a></div>
+<div class="stats-grid">
+    <article class="stat-card"><div class="stat-top"><span class="stat-label">Visitors today</span><span class="stat-icon"><i class="bi bi-people" aria-hidden="true"></i></span></div><div class="stat-value">{{ visitors_today }}</div><span class="stat-caption">Arrivals since midnight</span><span class="stat-line" aria-hidden="true"></span></article>
+    <article class="stat-card"><div class="stat-top"><span class="stat-label">Currently inside</span><span class="stat-icon blue"><i class="bi bi-door-open" aria-hidden="true"></i></span></div><div class="stat-value">{{ currently_inside }}</div><span class="stat-caption">All visits awaiting departure</span><span class="stat-line" aria-hidden="true"></span></article>
+    <article class="stat-card"><div class="stat-top"><span class="stat-label">Completed today</span><span class="stat-icon amber"><i class="bi bi-check2-circle" aria-hidden="true"></i></span></div><div class="stat-value">{{ completed_today }}</div><span class="stat-caption">Departures recorded today</span><span class="stat-line" aria-hidden="true"></span></article>
+    <article class="stat-card"><div class="stat-top"><span class="stat-label">Visitors this month</span><span class="stat-icon lilac"><i class="bi bi-calendar2-week" aria-hidden="true"></i></span></div><div class="stat-value">{{ visitors_this_month }}</div><span class="stat-caption">{% now 'F Y' %} arrivals</span><span class="stat-line" aria-hidden="true"></span></article>
+</div>
+<div class="charts-grid">
+    <section class="card">
+        <div class="panel-heading"><div><h2>Visitor activity</h2><p>Daily arrivals over the last {{ trend_days }} days</p></div><nav class="period-toggle" aria-label="Visitor activity period"><a href="?period=week" {% if period == 'week' %}aria-current="true"{% endif %}>7 days</a><a href="?period=month" {% if period == 'month' %}aria-current="true"{% endif %}>30 days</a></nav></div>
+        <div class="trend-summary"><strong>{{ trend_total }}</strong><span>visits in this period</span></div>
+        <div class="trend-chart {% if period == 'month' %}month{% endif %}" role="img" aria-label="Daily arrival chart. {{ trend_total }} visits in the last {{ trend_days }} days. Daily values are available in the table below.">
+            {% for day in trend %}<div class="trend-column" title="{{ day.date|date:'M j' }}: {{ day.total }} visits"><span class="trend-count">{{ day.total }}</span><div class="trend-fill" style="height: {% widthratio day.total trend_max 80 %}%"></div></div>{% endfor %}
+        </div>
+        <div class="trend-labels {% if period == 'month' %}month{% endif %}" aria-hidden="true">{% for day in trend %}<span>{% if period == 'week' %}{{ day.date|date:'D' }}{% elif forloop.first or forloop.last or forloop.counter|divisibleby:5 %}{{ day.date|date:'j' }}{% endif %}</span>{% endfor %}</div>
+        <table class="visually-hidden"><caption>Daily visitor arrivals</caption><thead><tr><th scope="col">Date</th><th scope="col">Visits</th></tr></thead><tbody>{% for day in trend %}<tr><th scope="row">{{ day.date|date:'F j, Y' }}</th><td>{{ day.total }}</td></tr>{% endfor %}</tbody></table>
+    </section>
+    <section class="card">
+        <div class="panel-heading"><div><h2>Who visits our campus</h2><p>Visitor types &middot; All recorded visits</p></div><i class="bi bi-pie-chart text-muted" aria-hidden="true"></i></div>
+        <div class="distribution">
+            <div class="donut" style="background: conic-gradient({{ type_gradient }})" role="img" aria-label="Visitor type distribution. {{ total_visits }} total visits. Counts are listed alongside this chart."><div class="donut-center"><strong>{{ total_visits }}</strong><span>Total visits</span></div></div>
+            <ul class="type-legend">{% for item in type_summary %}<li><span class="legend-dot" style="background: {{ item.color }}" aria-hidden="true"></span><span class="legend-name">{{ item.visitor__visitor_type }}</span><strong>{{ item.total }}</strong></li>{% empty %}<li><span class="legend-name">Your visitor breakdown will appear after the first arrival is recorded.</span></li>{% endfor %}</ul>
+        </div>
+    </section>
+</div>
+<div class="lower-grid">
+    <section class="card">
+        <div class="panel-heading"><div><h2>Recent visits</h2><p>The latest activity at your school entrance</p></div><a href="{% url 'visitor_history' %}" class="text-link">View history <i class="bi bi-arrow-up-right ms-1" aria-hidden="true"></i></a></div>
+        <div class="table-responsive recent-table"><table class="table align-middle mb-0"><thead><tr><th scope="col">Visitor</th><th scope="col">Destination</th><th scope="col">Time in</th><th scope="col">Time out</th><th scope="col">Status</th></tr></thead><tbody>
+            {% for visit in recent_visits %}
+            <tr><td><div class="visitor-cell"><span class="visitor-initial" aria-hidden="true">{{ visit.visitor.first_name|first }}{{ visit.visitor.last_name|first }}</span><div><strong>{{ visit.visitor.first_name }} {{ visit.visitor.last_name }}</strong><small>{{ visit.visitor.visitor_type_display }}</small></div></div></td><td>{{ visit.office.office_name }}</td><td class="time-cell">{{ visit.time_in|date:'h:i A' }}<small>{{ visit.time_in|date:'M j, Y' }}</small></td><td class="time-cell">{% if visit.time_out %}{{ visit.time_out|date:'h:i A' }}<small>{{ visit.time_out|date:'M j, Y' }}</small>{% else %}<span class="text-muted">&mdash;</span>{% endif %}</td><td><span class="badge {% if visit.status == 'Inside' %}bg-success{% else %}bg-secondary{% endif %}">{% if visit.status == 'Inside' %}<span class="status-dot me-1" aria-hidden="true"></span>{% endif %}{{ visit.status }}</span></td></tr>
+            {% empty %}<tr><td colspan="5"><div class="empty-state"><i class="bi bi-journal-plus" aria-hidden="true"></i><strong>A fresh start for your visitor log</strong>Record an arrival to see your school's activity here.<br><a href="{% url 'register_visitor' %}">Register your first visitor <i class="bi bi-arrow-right d-inline fs-6" aria-hidden="true"></i></a></div></td></tr>{% endfor %}
+        </tbody></table></div>
+    </section>
+</div></div>
+<aside class="dashboard-rail" aria-label="Visitor desk shortcuts">
+    <section class="desk-action-card"><span class="desk-action-icon"><i class="bi bi-person-plus" aria-hidden="true"></i></span><p class="eyebrow">VISITOR DESK</p><h2>A warm welcome.<br>A recorded arrival.</h2><p>Register a new visitor or find a returning profile to start their visit.</p><a href="{% url 'register_visitor' %}" class="btn">Register visitor <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i></a></section>
+    <section class="card desk-shortcuts"><div class="panel-heading"><div><h2>Quick actions</h2><p>Your daily visitor workflow</p></div></div><a href="{% url 'active_visitors' %}"><i class="bi bi-box-arrow-right" aria-hidden="true"></i><span>Record time-out<small>Complete an active visit</small></span><i class="bi bi-chevron-right" aria-hidden="true"></i></a><a href="{% url 'visitor_history' %}"><i class="bi bi-search" aria-hidden="true"></i><span>Find a visit<small>Search the visitor log</small></span><i class="bi bi-chevron-right" aria-hidden="true"></i></a><a href="{% url 'reports' %}"><i class="bi bi-bar-chart" aria-hidden="true"></i><span>View reports<small>Explore campus activity</small></span><i class="bi bi-chevron-right" aria-hidden="true"></i></a></section>
+    <section class="card">
+        <div class="panel-heading"><div><h2>Top destinations</h2><p>Most visited school offices</p></div><i class="bi bi-buildings text-muted" aria-hidden="true"></i></div>
+        <ol class="office-list">{% for item in office_summary %}<li><span class="office-rank">{{ forloop.counter|stringformat:'02d' }}</span><div class="office-info"><div><span>{{ item.office__office_name }}</span><strong>{{ item.total }}</strong></div><div class="office-track" aria-hidden="true"><div style="width: {% widthratio item.total office_max 100 %}%"></div></div></div></li>{% empty %}<li><div class="empty-state w-100"><i class="bi bi-building" aria-hidden="true"></i><strong>No destinations to rank yet</strong>Office visit counts will appear here.</div></li>{% endfor %}</ol>
+        {% if office_summary %}<p class="office-footnote">Top {{ office_summary|length }} &middot; All recorded visits</p>{% endif %}
+    </section>
+
+</aside></div>
+{% endblock %}

@@ -1,0 +1,60 @@
+﻿{% extends 'visitors/base.html' %}
+
+{% block title %}Reports - School Visitor Log System{% endblock %}
+{% block header_title %}Reports{% endblock %}
+
+{% block content %}
+<p class="text-muted">Summaries reflect the selected filters. Date filters use arrival dates in Philippine time.</p>
+{% include 'visitors/filters.html' %}
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+                <div class="text-muted small">Total Visit Records</div>
+                <div class="display-6 fw-bold">{{ total_visits }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-6"><div class="card border-0 shadow-sm"><div class="card-body">Currently inside <strong class="float-end">{{ inside }}</strong></div></div></div>
+    <div class="col-md-6"><div class="card border-0 shadow-sm"><div class="card-body">Completed visits <strong class="float-end">{{ completed }}</strong></div></div></div>
+</div>
+<div class="row g-4">
+    <div class="col-lg-6">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">Visitor Type Summary</h5>
+            </div>
+            <div class="card-body">
+                {% for item in by_type %}
+                <div class="d-flex justify-content-between mb-2">
+                    <span>{{ item.visitor__visitor_type }}</span>
+                    <strong>{{ item.total }}</strong>
+                </div>
+                {% empty %}
+                <p class="text-muted mb-0">No data available.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-white">
+                <h5 class="mb-0">Top Destinations</h5>
+            </div>
+            <div class="card-body">
+                {% for item in by_office %}
+                <div class="d-flex justify-content-between mb-2">
+                    <span>{{ item.office__office_name }}</span>
+                    <strong>{{ item.total }}</strong>
+                </div>
+                {% empty %}
+                <p class="text-muted mb-0">No data available.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

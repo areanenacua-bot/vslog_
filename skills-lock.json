@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "school-visitor-log-system": {
+      "source": "../vslog-skill",
+      "sourceType": "local",
+      "computedHash": "d7aa53ec8b9fb98cc52ba497e14503f19cd25d4a2fd5ebbaa0ddd1971080f1c4"
+    }
+  }
+}
